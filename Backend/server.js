@@ -1,6 +1,14 @@
 //create express app
 const exp=require("express")
 const app=exp()
+const cors = require('cors');
+const corsOptions = {
+    origin: 'https://master--ravi-blog1.netlify.app', // Replace with your frontend URL
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, // if you need to handle cookies
+    optionsSuccessStatus: 204
+  };
+  app.options('*', cors(corsOptions));
 const path=require('path') //core module
 //accessing content of enviroment variable file
 require('dotenv').config()//process.env.PORT
