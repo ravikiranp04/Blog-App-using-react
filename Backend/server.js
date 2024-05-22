@@ -2,13 +2,28 @@
 const exp=require("express")
 const app=exp()
 const cors = require('cors');
+// Define the allowed origins
+const allowedOrigins = ['https://ravi-blog1.netlify.app'];
+
 const corsOptions = {
-    origin: 'https://master--ravi-blog1.netlify.app', // Replace with your frontend URL
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true, // if you need to handle cookies
-    optionsSuccessStatus: 204
-  };
-  app.options('*', cors(corsOptions));
+  origin: function (origin, callback) {
+    // Check if the incoming origin is in the allowed origins list
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Content-Type,Authorization',
+  credentials: true, // Allows cookies to be sent
+  preflightContinue: false,
+  optionsSuccessStatus: 204 // Some legacy browsers (e.g., IE11) choke on 204
+};
+
+// Use the CORS middleware with the options defined
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 const path=require('path') //core module
 //accessing content of enviroment variable file
 require('dotenv').config()//process.env.PORT
@@ -28,6 +43,7 @@ app.use('/admin-api',adminApp)
 //-------------------------------------------------------
 //add body parser
 app.use(exp.json())
+app.use(exp.urlencoded({ extended: true })); // For parsing application/x-www-form-urlencoded
 //------------------------------------------------------------
 
 //Replace react build in http web server
