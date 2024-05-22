@@ -32,7 +32,7 @@ function Articles() {
 
   useEffect(() => {
     getArticlesofcurrentAuthor();
-  },[]);
+  },[getArticlesofcurrentAuthor]);
 
   return (
     <div className="container mt-5">
