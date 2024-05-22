@@ -18,11 +18,11 @@ function Signin() {
 
   // To know someone is logged in
   useEffect(() => {
-    if (loginStatus == true) {
-      if (currentuser.userType == 'user') {
+    if (loginStatus === true) {
+      if (currentuser.userType === 'user') {
         navigate('/user-profile');
       }
-      if (currentuser.userType == 'author') {
+      if (currentuser.userType === 'author') {
         navigate('/author-profile');
       }
 
@@ -67,20 +67,20 @@ function Signin() {
                     </label>
                   </div>
                 </div>
-                {errors.userType?.type == "required" && (
+                {errors.userType?.type === "required" && (
                   <p className="text-danger lead">Choose a UserType</p>
                 )}
 
                 {/*User Name-------------------------------- */}
                 <div className="mb-3">
                   <input type="text" placeholder="Username" className="form-control" {...register("username", { required: true })} />
-                  {errors.username?.type == "required" && (
+                  {errors.username?.type === "required" && (
                     <p className="text-danger lead">Username is Required</p>
                   )}
-                  {errors.username?.type == "maxLength" && (
+                  {errors.username?.type === "maxLength" && (
                     <p className="text-danger lead">Max Length is 10</p>
                   )}
-                  {errors.username?.type == "minLength" && (
+                  {errors.username?.type === "minLength" && (
                     <p className="text-danger lead">Min Length is 5</p>
                   )}
                 </div>
@@ -88,10 +88,10 @@ function Signin() {
                 {/*Password-------------------------------- */}
                 <div className="mb-3">
                   <input type="password" placeholder="Password" className="form-control" {...register("password", { required: true })} />
-                  {errors.password?.type == "required" && (
+                  {errors.password?.type === "required" && (
                     <p className="text-danger lead">Password is Required</p>
                   )}
-                  {errors.password?.type == "minLength" && (
+                  {errors.password?.type === "minLength" && (
                     <p className="text-danger lead">Enter at least 6 characters</p>
                   )}
                 </div>

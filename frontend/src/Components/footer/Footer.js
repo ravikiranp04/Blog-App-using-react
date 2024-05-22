@@ -12,16 +12,16 @@ function Footer() {
               </h6>
               <ul className="list-unstyled footer-link mt-4">
                 <li>
-                  <a href="">Pages</a>
+                  <a href="#">Pages</a>
                 </li>
                 <li>
-                  <a href="">Our Team</a>
+                  <a href="#">Our Team</a>
                 </li>
                 <li>
-                  <a href="">Feuchers</a>
+                  <a href="#">Feuchers</a>
                 </li>
                 <li>
-                  <a href="">Pricing</a>
+                  <a href="#">Pricing</a>
                 </li>
               </ul>
             </div>
@@ -34,16 +34,16 @@ function Footer() {
               </h6>
               <ul className="list-unstyled footer-link mt-4">
                 <li>
-                  <a href="">Wikipedia </a>
+                  <a href="#">Wikipedia </a>
                 </li>
                 <li>
-                  <a href="">React blog</a>
+                  <a href="#">React blog</a>
                 </li>
                 <li>
-                  <a href="">Term &amp; Service</a>
+                  <a href="#">Term &amp; Service</a>
                 </li>
                 <li>
-                  <a href="">Angular dev</a>
+                  <a href="#">Angular dev</a>
                 </li>
               </ul>
             </div>
@@ -54,16 +54,16 @@ function Footer() {
               <h6 className="footer-heading text-uppercase text-white">Help</h6>
               <ul className="list-unstyled footer-link mt-4">
                 <li>
-                  <a href="">Sign Up </a>
+                  <a href="#">Sign Up </a>
                 </li>
                 <li>
-                  <a href="">Login</a>
+                  <a href="#">Login</a>
                 </li>
                 <li>
-                  <a href="">Terms of Services</a>
+                  <a href="#">Terms of Services</a>
                 </li>
                 <li>
-                  <a href="">Privacy Policy</a>
+                  <a href="#">Privacy Policy</a>
                 </li>
               </ul>
             </div>

@@ -31,7 +31,7 @@ function Articles() {
 
   useEffect(() => {
     getArticlesofcurrentAuthor();
-  }, []);
+  });
 
   return (
     <div className="container mt-5">
