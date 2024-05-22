@@ -27,7 +27,7 @@ function Articles() {
       console.error('Error fetching articles:', error);
       setErr('Error fetching articles');
     }
-  }, [axiosWithToken]);
+  }, [axiosWithToken,err]);
 
   const readArticleByArticleId = (articleobj) => {
     navigate(`../Article/${articleobj.articleId}`, { state: articleobj });
