@@ -18,7 +18,7 @@ function ArticlesByAuthor() {
 
   const getArticlesofcurrentAuthor = async () => {
     try {
-      const res = await axiosWithToken.get(`http://localhost:4000/author-api/articles/${currentuser.username}`);
+      const res = await axiosWithToken.get(`${process.env.BASE_URL}/author-api/articles/${currentuser.username}`);
       if (res.data.message === 'Articles found') {
         setArticlesList(res.data.payload);
       } else {

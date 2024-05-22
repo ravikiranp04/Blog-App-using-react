@@ -25,7 +25,7 @@ function Article() {
 
   const postComment = async (commentObj) => {
     commentObj.username = currentuser.username;
-    const res = await axiosWithToken.post(`http://localhost:4000/user-api/comment/${state.articleId}`, commentObj);
+    const res = await axiosWithToken.post(`${process.env.BASE_URL}/user-api/comment/${state.articleId}`, commentObj);
     if (res.data.message === 'User Comment added') {
       setCommentStatus(res.data.message);
     } else {
@@ -41,7 +41,7 @@ function Article() {
     const modifyArticle = { ...state, ...editedArticle };
     delete modifyArticle._id;
     modifyArticle.dateofModification = new Date();
-    const res = await axiosWithToken.put('http://localhost:4000/author-api/article', modifyArticle);
+    const res = await axiosWithToken.put(`${process.env.BASE_URL}/author-api/article`, modifyArticle);
     if (res.data.message === 'Article modified') {
       setArticleEditStatus(false);
       setEditedArticle(res.data.payload);
@@ -52,7 +52,7 @@ function Article() {
   const deleteArticleById = async () => {
     let copy = { ...editedArticle };
     delete copy._id;
-    let res = await axiosWithToken.put(`http://localhost:4000/author-api/article/${copy.articleId}`, copy);
+    let res = await axiosWithToken.put(`${process.env.BASE_URL}/author-api/article/${copy.articleId}`, copy);
     if (res.data.message === 'article deleted') {
       setArticleViewStatus(false);
     }
@@ -61,7 +61,7 @@ function Article() {
   const restoreArticleById = async () => {
     let copy = { ...editedArticle };
     delete copy._id;
-    let res = await axiosWithToken.put(`http://localhost:4000/author-api/article/${copy.articleId}`, copy);
+    let res = await axiosWithToken.put(`${process.env.BASE_URL}/author-api/article/${copy.articleId}`, copy);
     if (res.data.message === 'article restored') {
       setArticleViewStatus(true);
     }
