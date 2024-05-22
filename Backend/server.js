@@ -8,9 +8,10 @@ const mongoClient = require('mongodb').MongoClient;
 const allowedOrigins = ['https://blog-app-using-react-4.onrender.com'];
 
 const corsOptions = {
-  origin: allowedOrigins,
+  origin: 'https://blog-app-using-react-4.onrender.com',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  optionsSuccessStatus: 200
 };
 
 // Use the CORS middleware with the options defined
