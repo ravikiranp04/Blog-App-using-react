@@ -3,14 +3,14 @@ import axios from 'axios';
 
 export const userLoginThunk=createAsyncThunk('user-Login',async(userCred,thunkApi)=>{
     let res;
-    if(userCred.userType=='user'){
+    if(userCred.userType==='user'){
         res=await axios.post(`${process.env.BASE_URL}/user-api/login`,userCred)
     }
-    if(userCred.userType=='author'){
+    if(userCred.userType==='author'){
         res=await axios.post(`${process.env.BASE_URL}/author-api/login`,userCred)
 
     }
-    if(res.data.message=='Login success'){
+    if(res.data.message==='Login success'){
         // Store Jwt token in Local or Session storge
         sessionStorage.setItem('token',res.data.token)
         return res.data;

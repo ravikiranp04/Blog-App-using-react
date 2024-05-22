@@ -16,7 +16,7 @@ function Header() {
   return (
     <ul className='nav bg-dark d-flex justify-content-end pt-3 fs-4' style={{height:80}}>
         {
-            loginStatus==false?<>
+            loginStatus===false?<>
             <li className='nav-item'>
             <Link className='nav-link text-white' to="">
                 Home

@@ -1,5 +1,6 @@
 import React from 'react'
 import './Footer.css'
+
 function Footer() {
   return (
     <footer className="section bg-footer">
@@ -12,16 +13,16 @@ function Footer() {
               </h6>
               <ul className="list-unstyled footer-link mt-4">
                 <li>
-                  <a href="#">Pages</a>
+                  <a href="/pages">Pages</a>
                 </li>
                 <li>
-                  <a href="#">Our Team</a>
+                  <a href="/team">Our Team</a>
                 </li>
                 <li>
-                  <a href="#">Feuchers</a>
+                  <a href="/features">Features</a>
                 </li>
                 <li>
-                  <a href="#">Pricing</a>
+                  <a href="/pricing">Pricing</a>
                 </li>
               </ul>
             </div>
@@ -34,16 +35,16 @@ function Footer() {
               </h6>
               <ul className="list-unstyled footer-link mt-4">
                 <li>
-                  <a href="#">Wikipedia </a>
+                  <a href="https://www.wikipedia.org">Wikipedia</a>
                 </li>
                 <li>
-                  <a href="#">React blog</a>
+                  <a href="https://reactjs.org/blog">React blog</a>
                 </li>
                 <li>
-                  <a href="#">Term &amp; Service</a>
+                  <a href="/terms">Term &amp; Service</a>
                 </li>
                 <li>
-                  <a href="#">Angular dev</a>
+                  <a href="/angular-dev">Angular dev</a>
                 </li>
               </ul>
             </div>
@@ -54,16 +55,16 @@ function Footer() {
               <h6 className="footer-heading text-uppercase text-white">Help</h6>
               <ul className="list-unstyled footer-link mt-4">
                 <li>
-                  <a href="#">Sign Up </a>
+                  <a href="/signup">Sign Up</a>
                 </li>
                 <li>
-                  <a href="#">Login</a>
+                  <a href="/login">Login</a>
                 </li>
                 <li>
-                  <a href="#">Terms of Services</a>
+                  <a href="/terms">Terms of Services</a>
                 </li>
                 <li>
-                  <a href="#">Privacy Policy</a>
+                  <a href="/privacy">Privacy Policy</a>
                 </li>
               </ul>
             </div>
@@ -75,7 +76,7 @@ function Footer() {
                 Contact Us
               </h6>
               <p className="contact-info mt-4">
-                Contact us if need help withanything
+                Contact us if you need help with anything
               </p>
               <p className="contact-info">+91 9999999999</p>
             </div>
