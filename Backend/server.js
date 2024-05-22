@@ -6,20 +6,10 @@ const cors = require('cors');
 const allowedOrigins = ['https://ravi-blog1.netlify.app'];
 
 const corsOptions = {
-  origin: function (origin, callback) {
-    // Check if the incoming origin is in the allowed origins list
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  allowedHeaders: 'Content-Type,Authorization',
-  credentials: true, // Allows cookies to be sent
-  preflightContinue: false,
-  optionsSuccessStatus: 204 // Some legacy browsers (e.g., IE11) choke on 204
-};
+    origin: 'https://ravi-blog1.netlify.app', // Allow requests only from this origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow these HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'] // Allow these headers
+  };
 
 // Use the CORS middleware with the options defined
 app.use(cors(corsOptions));
