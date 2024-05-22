@@ -32,7 +32,7 @@ function App() {
     {
       path:'/user-profile',
       element:<UserProfile/>,
-      children:[,
+      children:[
         {
           path:'articles',
           element:<Articles/>
