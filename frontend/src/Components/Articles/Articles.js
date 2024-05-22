@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate, Outlet } from 'react-router-dom';
 import axios from 'axios';
-
+import { BASE_URL } from '../port';
 function Articles() {
   const [articlesList, setArticlesList] = useState([]);
   const [err, setErr] = useState('');
@@ -16,7 +16,7 @@ function Articles() {
 
   const getArticlesofcurrentAuthor = useCallback(async () => {
     try {
-      let res = await axiosWithToken.get(`${process.env.BASE_URL}/user-api/articles`);
+      let res = await axiosWithToken.get(`${BASE_URL}/user-api/articles`);
       if (res.data.message === 'All articles') {
         setArticlesList(res.data.payload);
       } else {

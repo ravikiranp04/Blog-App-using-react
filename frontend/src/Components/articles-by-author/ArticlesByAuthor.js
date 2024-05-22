@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import { BASE_URL } from '../port';
 
 function ArticlesByAuthor() {
   const [articlesList, setArticlesList] = useState([]);
@@ -18,7 +18,7 @@ function ArticlesByAuthor() {
 
   const getArticlesofcurrentAuthor = async () => {
     try {
-      const res = await axiosWithToken.get(`${process.env.BASE_URL}/author-api/articles/${currentuser.username}`);
+      const res = await axiosWithToken.get(`${BASE_URL}/author-api/articles/${currentuser.username}`);
       if (res.data.message === 'Articles found') {
         setArticlesList(res.data.payload);
       } else {

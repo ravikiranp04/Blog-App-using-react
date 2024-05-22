@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { BASE_URL } from '../port';
 //import { axiosWithToken } from '../../axiosWithToken';
 function AddArticle() {
   let {register,handleSubmit}=useForm();
@@ -27,7 +27,7 @@ const axiosWithToken=axios.create({
       console.log(newArticle)
 
       //make HTTP Post request to author api(protected-route)
-      let res=await axiosWithToken.post (`${process.env.BASE_URL}/author-api/new-article`,newArticle)
+      let res=await axiosWithToken.post (`${BASE_URL}/author-api/new-article`,newArticle)
       console.log("res ",res)
       if(res.data.mesaage==='New Article added'){
         //navigate gor articlesByauthoe Component

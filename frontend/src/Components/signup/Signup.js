@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import { BASE_URL } from '../port';
 function Signup() {
   let { register, handleSubmit, formState: { errors } } = useForm();
   let [err, setError] = useState('');
@@ -10,7 +10,7 @@ function Signup() {
 
   async function onSignUpFormSubmit(userobj) {
     if (userobj.userType === 'user') {
-      const res = await axios.post(`${process.env.BASE_URL}/user-api/user`, userobj);
+      const res = await axios.post(`${BASE_URL}/user-api/user`, userobj);
       if (res.data.message === 'User Created') {
         navigate('/signin');
       } else {
@@ -18,7 +18,7 @@ function Signup() {
       }
     }
     if (userobj.userType === 'author') {
-      const res = await axios.post(`${process.env.BASE_URL}/author-api/user`, userobj);
+      const res = await axios.post(`${BASE_URL}/author-api/user`, userobj);
       if (res.data.message === 'Author Created') {
         navigate('/signin');
       } else {

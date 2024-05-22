@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import axios from 'axios';
-
+import { BASE_URL } from '../../Components/port';
 export const userLoginThunk=createAsyncThunk('user-Login',async(userCred,thunkApi)=>{
     let res;
     if(userCred.userType==='user'){
-        res=await axios.post(`${process.env.BASE_URL}/user-api/login`,userCred)
+        res=await axios.post(`${BASE_URL}/user-api/login`,userCred)
     }
     if(userCred.userType==='author'){
-        res=await axios.post(`${process.env.BASE_URL}/author-api/login`,userCred)
+        res=await axios.post(`${BASE_URL}/author-api/login`,userCred)
 
     }
     if(res.data.message==='Login success'){
