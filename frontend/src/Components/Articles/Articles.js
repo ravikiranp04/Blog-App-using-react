@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate, Outlet } from 'react-router-dom';
 import axios from 'axios';
 
@@ -8,23 +8,26 @@ function Articles() {
   let navigate = useNavigate();
   let token = sessionStorage.getItem('token');
 
-  const axiosWithToken = axios.create({
-    headers: { Authorization: `Bearer ${token}` }
-  });
+  const axiosWithToken = useMemo(() => {
+    return axios.create({
+      headers: { Authorization: `Bearer ${token}` }
+    });
+  }, [token]);
 
-  const getArticlesofcurrentAuthor = async () => {
+  const getArticlesofcurrentAuthor = useCallback(async () => {
     try {
       let res = await axiosWithToken.get(`${process.env.BASE_URL}/user-api/articles`);
       if (res.data.message === 'All articles') {
         setArticlesList(res.data.payload);
       } else {
         setErr(res.data.message);
-        console.log(err)
+        console.log(res.data.message);
       }
     } catch (error) {
       console.error('Error fetching articles:', error);
+      setErr('Error fetching articles');
     }
-  };
+  }, [axiosWithToken]);
 
   const readArticleByArticleId = (articleobj) => {
     navigate(`../Article/${articleobj.articleId}`, { state: articleobj });
@@ -32,7 +35,7 @@ function Articles() {
 
   useEffect(() => {
     getArticlesofcurrentAuthor();
-  },[getArticlesofcurrentAuthor]);
+  }, [getArticlesofcurrentAuthor]);
 
   return (
     <div className="container mt-5">
