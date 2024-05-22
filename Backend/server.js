@@ -1,102 +1,67 @@
-//create express app
-const exp=require("express")
-const app=exp()
+const exp = require("express");
+const app = exp();
 const cors = require('cors');
+const path = require('path');
+const mongoClient = require('mongodb').MongoClient;
+
 // Define the allowed origins
-const allowedOrigins = ['https://ravi-blog1.netlify.app'];
+const allowedOrigins = ['https://blog-app-using-react-4.onrender.com'];
 
 const corsOptions = {
-    origin: 'https://ravi-blog1.netlify.app', // Allow requests only from this origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow these HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'] // Allow these headers
-  };
+  origin: allowedOrigins,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
 
 // Use the CORS middleware with the options defined
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
-const path=require('path') //core module
-//accessing content of enviroment variable file
-require('dotenv').config()//process.env.PORT
-//---------------------------------------
-//Import the apis
-const userApp=require('./APIs/user-api')
-const authorApp=require('./APIs/author-api')
-const adminApp=require('./APIs/admin-api')
-//--------------------------------------------------
 
-//handover req to specific route based on start of paths
-app.use('/user-api',userApp)
-app.use('/author-api',authorApp)
-app.use('/admin-api',adminApp)
+// Static file serving from React build directory
+app.use(exp.static(path.join(__dirname, '../frontend/build')));
 
+// Body parser middleware
+app.use(exp.json());
+app.use(exp.urlencoded({ extended: true }));
 
-//-------------------------------------------------------
-//add body parser
-app.use(exp.json())
-app.use(exp.urlencoded({ extended: true })); // For parsing application/x-www-form-urlencoded
-//------------------------------------------------------------
+// APIs
+const userApp = require('./APIs/user-api');
+const authorApp = require('./APIs/author-api');
+const adminApp = require('./APIs/admin-api');
 
-//Replace react build in http web server
-app.use(exp.static(path.join(__dirname,'../frontend/build')))
+// Route middleware
+app.use('/user-api', userApp);
+app.use('/author-api', authorApp);
+app.use('/admin-api', adminApp);
 
+// Error handler middleware
+app.use((err, req, res, next) => {
+    res.status(500).json({ status: "error", message: err.message });
+});
 
-
-
-//-----------------------------
-//Error Handler
-app.use((res,req,next,err)=>{
-    res.send({status:"Error",message:err.message})
-})
-
-//Link with mongodb server
-const mongoClient=require('mongodb').MongoClient //importing
+// MongoDB connection
 mongoClient.connect(process.env.DB_URL)
-.then(client=>{
-    //get database object
-    const blogDBObj=client.db('blogdb')
-    //create collection objects
-    const usersCollection=blogDBObj.collection('users')
-    const authorsCollection=blogDBObj.collection('authors')
-    const articlesCollection=blogDBObj.collection('articlesCollection')
-    //share collection objs with APIS
-    app.set('usersCollection',usersCollection)
-    app.set('authorsCollection',authorsCollection)
-    app.set('articlesCollection',articlesCollection);
-    console.log('DB connection success')
+.then(client => {
+    const blogDBObj = client.db('blogdb');
+    const usersCollection = blogDBObj.collection('users');
+    const authorsCollection = blogDBObj.collection('authors');
+    const articlesCollection = blogDBObj.collection('articlesCollection');
+    app.set('usersCollection', usersCollection);
+    app.set('authorsCollection', authorsCollection);
+    app.set('articlesCollection', articlesCollection);
+    console.log('DB connection success');
 })
-.catch(err=>{
-    console.log("Err in DB connect",err)
-})
+.catch(err => {
+    console.log("Err in DB connect", err);
+});
 
+// Graceful shutdown
+process.on('SIGINT', () => {
+    console.log('Closing MongoDB connection');
+    mongoClient.close();
+    process.exit(0);
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Syncronous error handling middleware
-app.use((err,req,res,next)=>{
-    res.send({status:"error",message:err.message})
-})
-
-//-------------------------------------------------------------------
-
-//get port number from .env
-const port=process.env.PORT || 4000
-//Assign port number to http server
-app.listen(port,()=>{console.log(`server on ${port}`)})
+const port = process.env.PORT || 4000;
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
