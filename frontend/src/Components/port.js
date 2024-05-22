@@ -1,1 +1,1 @@
-export const BASE_URL = "https://blogapp-backend-3.onrender.com"
+export const BASE_URL = "https://blog-app-4mut.onrender.com"
