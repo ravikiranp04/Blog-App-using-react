@@ -4,7 +4,7 @@ import { useSelector,useDispatch } from 'react-redux';
 import {resetState} from '../../Redux/slices/userLoginSlice'
 function Header() {
     let dispatch=useDispatch();
-    const {isPending,currentuser,errorStatus,errorMessage,loginStatus}=useSelector(state=>state.userLogin);
+    const {currentuser,loginStatus}=useSelector(state=>state.userLogin);
 
     function logout(){
         //remove token from browser storage

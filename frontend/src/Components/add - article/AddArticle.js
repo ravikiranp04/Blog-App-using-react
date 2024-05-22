@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import { UseSelector, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -29,11 +29,12 @@ const axiosWithToken=axios.create({
       //make HTTP Post request to author api(protected-route)
       let res=await axiosWithToken.post (`${process.env.BASE_URL}/author-api/new-article`,newArticle)
       console.log("res ",res)
-      if(res.data.mesaage='New Article added'){
+      if(res.data.mesaage==='New Article added'){
         //navigate gor articlesByauthoe Component
         navigate(`/author-profile/articles-by-author/${currentuser.username}`)
       }
       else{
+        console.log(err)
         setErr(res.data.mesaage)
       }
   }

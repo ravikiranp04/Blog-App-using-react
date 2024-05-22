@@ -8,7 +8,7 @@ function Signin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const { isPending, currentuser, errorStatus, errorMessage, loginStatus } = useSelector(state => state.userLogin);
+  const {currentuser, errorMessage, loginStatus } = useSelector(state => state.userLogin);
 
   function login_handle(userCred) {
     console.log(userCred);

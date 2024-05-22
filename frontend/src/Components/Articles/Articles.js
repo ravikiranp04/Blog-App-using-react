@@ -19,6 +19,7 @@ function Articles() {
         setArticlesList(res.data.payload);
       } else {
         setErr(res.data.message);
+        console.log(err)
       }
     } catch (error) {
       console.error('Error fetching articles:', error);

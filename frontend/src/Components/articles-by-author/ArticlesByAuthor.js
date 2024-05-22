@@ -23,6 +23,7 @@ function ArticlesByAuthor() {
         setArticlesList(res.data.payload);
       } else {
         setErr(res.data.message);
+        console.log(err)
       }
     } catch (error) {
       console.error('Error fetching articles:', error);
@@ -35,7 +36,7 @@ function ArticlesByAuthor() {
 
   useEffect(() => {
     getArticlesofcurrentAuthor();
-  }, [articlesList]);
+  });
 
   return (
     <div className="container mt-5">
