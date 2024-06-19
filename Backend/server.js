@@ -5,7 +5,7 @@ const path = require('path');
 const mongoClient = require('mongodb').MongoClient;
 
 // Define the allowed origins
-const allowedOrigins = ['https://blog-app-using-react-4.onrender.com'];
+//const allowedOrigins = ['https://blog-app-using-react-4.onrender.com'];
 
 const corsOptions = {
   origin: 'https://blog-app-using-react-4.onrender.com',

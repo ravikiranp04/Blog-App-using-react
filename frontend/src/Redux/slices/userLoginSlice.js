@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import axios from 'axios';
-import { BASE_URL } from '../../Components/port';
+import { BASE_URL } from "../../Components/port";
 export const userLoginThunk=createAsyncThunk('user-Login',async(userCred,thunkApi)=>{
     let res;
     if(userCred.userType==='user'){

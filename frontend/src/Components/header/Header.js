@@ -32,10 +32,12 @@ function Header() {
                 Sign In
             </Link>
         </li></>:<li className='nav-item'>
-            <Link className='nav-link text-white' to="/signin" onClick={logout}>
+            
+            currentuser.username!=null?<Link className='nav-link text-white' to="/signin" onClick={logout}>
                 <span className='lead fs-3 text-warning m-4'>{currentuser.username}<sup className='text-white fs-2'>({currentuser.userType})</sup></span>
                 Sign Out
-            </Link>
+            </Link>:<div>return</div>
+            
         </li>
         }
         
